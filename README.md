@@ -16,5 +16,4 @@ A modern and responsive E-Commerce web application built using **React**, **Cont
 - Context API
 - React Router
 - Toastify
-- Firebase (for hosting or data)
 - JSON Server (for mock backend)
