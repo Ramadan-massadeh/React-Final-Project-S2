@@ -4,7 +4,6 @@ import { CartContext } from "../context/CartContext";
 import styles from "./Navbar.module.css";
 
 function Navbar() {
-  // Accessing cartItems from the CartContext
   const { cartItems } = useContext(CartContext);
 
   return (
@@ -19,7 +18,6 @@ function Navbar() {
         </li>
         <li>
           <Link to="/cart">
-            {/* Shows the number of items in the cart */}
             Cart <span>({cartItems.length})</span>
           </Link>
         </li>

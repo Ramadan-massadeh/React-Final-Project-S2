@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Cart() {
-  // Access cart-related functions and data from context
   const { cartItems, clearCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
 
@@ -19,16 +18,14 @@ function Cart() {
 
   // Handle placing the order
   const handlePlaceOrder = () => {
-    toast.success("✅ Order placed successfully! Redirecting..."); // Show success message
-    clearCart(); // Clear the cart after placing the order
+    toast.success("✅ Order placed successfully! Redirecting...");
+    clearCart();
 
-    // Redirect to home page after a short delay
     setTimeout(() => {
       navigate("/");
     }, 3000);
   };
 
-  // If cart is empty, show this message
   if (cartItems.length === 0) {
     return (
       <div style={{ padding: "2rem" }}>

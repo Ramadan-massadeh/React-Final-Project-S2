@@ -3,10 +3,8 @@ import { CartContext } from "../context/CartContext";
 import styles from "./Products.module.css";
 
 function Products() {
-  // State to store products
   const [products, setProducts] = useState([]);
 
-  // Access the addToCart function from context
   const { addToCart } = useContext(CartContext);
 
   // Fetch product data from JSON server when component mounts
@@ -28,7 +26,6 @@ function Products() {
     <div style={{ padding: "2rem" }}>
       <h2>🛍️ All Products</h2>
 
-      {/* Show loading message if products are not yet loaded */}
       {products.length === 0 ? (
         <p>Loading...</p>
       ) : (
@@ -40,7 +37,6 @@ function Products() {
             justifyContent: "center",
           }}
         >
-          {/* Render each product card */}
           {products.map((product) => (
             <div key={product.id} className={styles.card}>
               <img
