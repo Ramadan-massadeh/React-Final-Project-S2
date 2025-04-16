@@ -35,8 +35,7 @@ I wrote 3 tests using Vitest and React Testing Library:
 
 - Ramadan Masadekh: Built the entire project including all page components (Home, Products, Cart, Checkout, Contact), managed the cart logic using Context API, set up JSON Server as the backend for product data, and handled all styling and routing.
 - Valeriia Holotiuk: Focused on UI/UX design using Figma and worked on testing components using Vitest and React Testing Library.
-# Final-project-s2
-# React-Final-Project-S2
-# React-Final-Project-S2
-# React-Final-Project-S2
-# React-Final-Project-S2
+
+# Figma Design
+
+https://www.figma.com/design/6Ta0FWP6akF1vnlbL4KEFX/Untitled?node-id=0-1&p=f
