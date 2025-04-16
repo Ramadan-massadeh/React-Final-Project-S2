@@ -58,7 +58,7 @@ function Checkout() {
         </>
       ) : (
         <h3 style={{ color: "green", marginTop: "2rem" }}>
-          ✅ Order Placed Successfully! Redirecting...
+          Order Placed Successfully! Redirecting...
         </h3>
       )}
     </div>

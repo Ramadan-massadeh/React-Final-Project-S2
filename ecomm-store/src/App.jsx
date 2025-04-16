@@ -1,3 +1,6 @@
+// MyStore – React E-Commerce Project
+// Design and development by: Ramadan Masadekh
+// Submission date: April 9, 2025
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";

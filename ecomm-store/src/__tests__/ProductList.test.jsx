@@ -1,0 +1,47 @@
+// product list test
+// submission date: Apr 13, 2025
+// author: Valeriia Holotiuk
+import React from "react";
+import { test, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { CartContext } from "../context/CartContext";
+
+//Fake list just to test
+function TestProductList() {
+  const products = [
+    {
+      id: 1,
+      title: "Jordan Shoes",
+      description: "Nice shoes",
+      price: 100,
+      image:
+        "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTEBISFRUVFREXEhIYFRcSFRcWFRIWFhgXFhcZHSggGBolGxcVITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGy0lHyYvLS8tLS0rKy0rLSstLS0tLS0rLS8tLTYtLS0tLS0tKy0tLSsrLS0tKy0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABgECBAUHAwj/xABHEAACAQIDBQQGBAkLBQAAAAAAAQIDEQQSIQUGMUFRE2FxgQciMpGhsSNyksEUM1JTYnOCorIWJCU0QkN0s8LR8FRjZJPx/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECBAUD/8QAIhEBAQEAAgEEAgMAAAAAAAAAAAECAxEyEiEiMRNRBHGB/9oADAMBAAIRAxEAPwDuIAAAAAAAAAAAAAAAANRvJvJh8DTVTEyaUpKMIxWacn3LolxZz/Gelat2n0WFpxp/2XUk87XWysl4fEi6kWmbXVwcgq+luumksPRa0vrNNX89SfbnbyrG05PKoyhkzWd160FLnqmnmi1r7PHUTUpc2JCACVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKMDgbVbae0cU5SThCpUhCTd8tKM3CEYrvSv5tkmjuBTyrNWqPnaysR30X4SpQq4inWWWVNRjUvympNO/mnqdFpbWoylkVRZvyeDMm78q24nxiN4jcrDpcJXXO9vgRvaNOrs6rTxGEm9bqUW/a52fc+/mkdG2njKdON6k1G5Bt9XGpQUovRVIXfNJ31K5tml9SXLttOV0n1SfvLi2lwVnfRa9dC42ueAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5/LBNYqtn4zVnPROVqk3fTopRV+OiMb+S0FUVTPPS2ueV9Omtlfn1JLvNTjCpTne0pZ4tddE7/u28zS7Sx393HOpuLyyX9nTjwfyMep1qxvxr1SWNdvDslVqts0kklZJteatwZg4/ZqVJU3eSdWjo3mdu0V1fmrXLKuLxMailNupp7OWUW7c08qVySbu4dV68XNStD6S1la9mkpd2svcRJbel99ZndTTZ9JwpU4Sd3GEIt96ikzIANrm29gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYG2NsUMLDtMTVjTjra71k0r2jFayfcgMPe7CqpQcXo7rLJcYvimvNL3HOobcnh5dniOlsz0Ul1i/uJet5aeNpqVBS7NTavLSTcV05L1jVbUwMakXGUFJdGkzLyX5NnFL6EQx211TbjQlKcqjvq3Jq/JHSPRvhJRw851XepOp63clFZY+WZ+bZDcBsWnTk5RhFPrbXwuSjZe8EcLSqZ4OUY3n6rSdklm9ppcF1GNSaTyZ1cpuDVbB3iwuMhnwtaFTROUU7TjdcJwfrRfijampiAAAAAAAAAAAAAAAAAAAAAAAAAAANbtzbuHwlPtMTVjBck9ZSfSMVrJ+Bib67wLA4Sdeyc9I0ovg6kuF+5JNvuTPnHau0quIqOrXnKc5cZN/BLgl3LQJdD3i9Ltad44KmqMdfpZpTqPvUdYx88xz/aW1a2In2mIqzqT4Jyd7LpFcIruRg3K3JS3e7O81TBzdlnpSaz072/ai+Uvn7rT6hvpg6kb9rkfOM04tefB+TOSstcTz1xZ17vTPJcut195cHGN3iKb5tRvN+6N9SC71b2yxCdKipQpP2m/bnbk7ezHu58+hHcpSURnhzPdOuXWvZbha86clOnKUJx1jOLcZJ9zWqOl7rel6vStDHQ7eH52NoVku9aRn+74nNcpSx6PJ9TbA3jw2MjmwtWM7e1D2Zx+tB6rx4G2Pk/ZO06uGqwrUJuM4O8X16prnF8Gj6e3b2xHF4aliIaKpFNx45ZLSUfKSa8iENkAAgAAAAAAAAAAAAAAAAAAAAAcf9POPebDUE9FGpUku9tQj8FP3nJoSOi+nh/z2l/ho/wCbVOZQnrYmJjLL6dNyajGLk3wik5N+CWrPNFyqyj60ZSi1ezTcWtOTWqJSzsfsetRhGdaGRSdoptZuF9Vy8zz2fsqtXf0NOUrcZcIrxk9PImu9uEdarg8Pd+s6mZ87RjFyfjZSPDe7EZFSwWGy01NLNrlSi3ZJy5JtSbfO3eT0p6kee7Vd3yOjUkvahCrCU14q5p6kHFtSTTWjTVmn0afAlW1dlUqGHp1cNU+mpOnOdTWMpRq3UZJPgrrRdL3MverCxr4SnjIpKeWGe3NSai0/qyfuuOiaQaSKPTiXsx68tGQuRn7+S6HcfQPj3LDV6Lf4qrGS7lVjw+1CT8zhUJHWfQDXtXxMPyqVOVvqTa/1kIrtYAIQAAAAAAAAAAAAAAAAAAAAAPnv0yY1VdpTiv7qnSp36vL2j/zLeRz2tLK79Pkd43o3cw2Kq1ZVYWm5S+lj6s9HZX5S0S4pnOtv7g9lGU1ibxWqTpetbpfPY8882b7Pe8Ooi8al9VwZ7UFeUV1lFe9pGHQ0hHXkvketOo001xTTXk7ns8nSN48cqWPwkpO0Uqib6dpeF/C9jX7zYeH4fF1/Y7Km4w/OSzuKp9yu7vuuRjbm2qmKlGVSME4xcVlTSs3fW7ZZiNr1KlOEKlm6T+iq654r8m/NaR466E9qTKSb+YilO1tK1KpKlKHNwy51Lw1jb6zMzbdT8H2ZToz0qTUVl5r11Un7uHmjTy3rhJxqVMJSnXilaq5WTa4Nxy8V4mh2ntKpXm6lWV3wXJRXSK5IEyxpSMfEvT3fMvvcxcY3proQu9aEToXoYxWTacI3/GUq0POyqf6CB4OjKWkIyl9VOXyJduPsjFwxuGqxoVIqNalmlNdn6rkoz9qzfquXAi2QktfSYAIVAAAAAAAAAAAAAAAAAAAALak0k2+CTb8gIJUd5SfWUv4maDb0c+Snr686cPtzUfvNxntG77zF2TR7bG0FyjLO/wBhOS+KRz8e+nS1esuR7yQisZilBJRWJxSilwSVeaSXkawzdtP+c4i//UYi/wD7pGG7HRc9QoLlUSBZJF5ZJgWPQpQX0tPW3rw18y43e4NBT2nhIyScZVXGSaurSpTX3kX6HZdnxtTVuhdSl9JD68P4keOzpWppPitH4rRivOzUujT9zuc9vjowKJlTe5wAAAAAAAAAAAAAAAAAABgbenbD1PBL7UkvvM81u8Svhqv1b+5pld+NWx5RB9ptqnp/yxX0eVL4p3X91Oz8JwR44mteNn0Z67g6Yy3/AGan8UDHxeUbuWfCuO7xQtjMUumJxS91eZrWbTeb+u4v/FYr/Pma1m9hWPQMrlKJEimYsbLpRZS3UC0lvomw+fa2F/Qdab8FQqJfFoieVnQPQbT/AKTbfLDV/wCOkv8AniQOh7ao9niKkVwlJTXhPV/vZilWmshsd6KS/CU+tKP7s5/7owq3smLc9628d7kSzd/FOpQhJ8UnGXjF2v5pJ+ZsTR7ofiH+sn9xvDVi95jHyTrVgACygAAAAAAAAAAAAAAAAYW243w9X9XP4RbM0sr080ZRfCSafmrEWdzpMvV7cvqu6Pbchf0hpyo1L/aieFaDWj4ptea0Zmej6N8dVfSgl9qcWYeHyjoc3hXJt+6OTaOLj/5FWX25Z/8AUaG5JPSPG20sX+ul7nGLIxN8zoOevbKWZYpByZKVznY85VGW5uti5R6BCna+Rv8AcTeh7PxkK8leFnTraXfZTcXJr9JZYteFuZobLmi2dPRrlZ/LkQl9N71y+lpNc4PXuzI1VeWhsd6FphpdYSX7sGvvNXiJ6Mx8vlWzh8Yku5X4iX6yfyib80O5n9Wv1nP7l9xvjRx+MZeXzoAC7zAAAAAAAAAAAAAAAAAABz7bdFQxNSL4OWZftLN82xuBZYzEJfm4W8pZTL3zpWrpr+1TXvUpL/Ywt0GoY1X07SjKC+smp/KLMefblb78uH/HJ/SPTcdp4vPx7W9+6UIyj+60iLyqdxJN/wDGdttHFTSuu2nFdLU/o1/CR5xfd7jawseSXSS8NUUiv0/hb5ntZ9fhYrbqSLMvVJ96KqkujRR0V4fAKD5Sfz+YF1+9+ZRy4+ZTM+dn8Cqs+RCX0/vNSUsNRnHhF03+zKDX3ojWIfq+JusFiO12PQnrfscNfxjKEX8mR/F1LKxj5vJs/j+Kd7r0suFprqnL7UnJfBo2p5YSllhCP5MYr3JI9TVmdTpi1e7aAAlAAAAAAAAAAAAAAAAAAAIzvnhW1CppZeq/PVfeQ7F05xUZwllnGSlF/pJ391+R0nbVHPQqJK7y3XjHX7iBSlmVnbl/9MvLn5dxt4N/HqorPc+lOc6lRXdSUp2zSg05Nya9Xldng9z6Otk15uSJbUTtpK3HijCm5p8fgdjGM/pxN8mu/tEa+58eTfxNdX3WkpJKXFpcOrSJ12sud/ceM45pLua4+bXxsWvHj9InLv8AaF4zdS1TLSqNqyeq11v00C3LqvhUj7mTSjRUZu7vfW/jw18zLjfvK3ix+lvzbc+/kTW5yj7mW0N0JOaXaJJcZZHp4a6s6Jfrf3/7GPVl1tYreLK85t10LHYZUtnwpQ4Qp4eEfCLgvkmQ6etSEeTnBfvJElxeNzYWhC95OFOUvKNlf5mjwmHc8RSgvzkHfui8z+CZyeb3306/8f24+66SADUxAAAAAAAAAAAAAAAAAAAAAAc123ejiexcbKTvTlycXd28dGvJnSjVbw4ClOnKdSEXKnGThJrWLtyIufVYvnfpl/pz+v33ZgylJew7d0rmxxEIvlf3o8lQh04eZ0s1y9T3aupj5r2o+ad/mW0sbrdfOz+BmVIJ8DVY92ccsZScqlOCjHjepNRVlz1a0Jv0jP2yvwh3su5X8DLpzvz+ZrqFa8e+9ny4OzNhgXfg/Ij6i33XpJ9DBrJuSiuMmkl4uxtMRHoka7DQvXi3wi7nnvXWbXrx49WpErhTSiorhFWGw1/Oqfc5fwyPOGHlTiqspXVVNqP5Ki7ed+JlbtLPiYtLSKlJ/Zcfm0ciS+qO3r2xevpOAAanPAAAAAAAAAAAAAAAAAAAAAAxdqUXOlOMeMotLkZQAgz3bxL5LwzosjutiOkftRJ4D1/Np5fhy5/U3UxH5MPtJHvsHdOrHEQqV4wUYNySTUryStH3Xv5InIF5tWdE4cy9ud7xblVpYic8LGGSo87Tko2lL2kl0vd+Z44DdDFx9qMPto6UBObXXReHNvaCT3YxFvZj9pHjgd08RGUpThB3Ty+uuPK50EFdcl1OqvjExqaiKbU2RXqRhGFNRjCKjFOafDi3brobLdzZDoRbn7crX5pJXsr+dzcg8pmS9va8urPSAAs8wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k=",
+    },
+  ];
+
+  return (
+    <div>
+      <h2>All Products</h2>
+      <div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <h3>{product.title}</h3>
+            <button>Add to Cart</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+test(" Add to Cart ", () => {
+  render(
+    <CartContext.Provider value={{ addToCart: () => {} }}>
+      <TestProductList />
+    </CartContext.Provider>
+  );
+
+  const button = screen.getByText(/add to cart/i);
+  expect(button).toBeInTheDocument();
+});

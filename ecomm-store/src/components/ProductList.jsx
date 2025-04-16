@@ -1,36 +1,35 @@
 import useProducts from "../hooks/useProducts";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import styles from "./ProductList.module.css";
 import { toast } from "react-toastify";
+import "../styles/productList.css";
 
 function ProductList() {
   const { products, loading } = useProducts();
-
   const { addToCart } = useContext(CartContext);
 
   if (loading) {
-    return <p className={styles.loading}>Loading products...</p>;
+    return <p className="product-loading">Loading products...</p>;
   }
 
   return (
-    <div className={styles.grid}>
+    <div className="product-grid">
       {products.map((product) => (
-        <div key={product.id} className={styles.card}>
+        <div key={product.id} className="product-card">
           <img
             src={product.image}
             alt={product.title}
-            className={styles.image}
+            className="product-image"
           />
 
-          <h3 className={styles.title}>{product.title}</h3>
+          <h3 className="product-title">{product.title}</h3>
 
-          <p className={styles.description}>{product.description}</p>
+          <p className="product-description">{product.description}</p>
 
-          <p className={styles.price}>${product.price}</p>
+          <p className="product-price">${product.price}</p>
 
           <button
-            className={styles.button}
+            className="product-button"
             onClick={() => {
               addToCart(product);
               toast.success("Product added to cart!");

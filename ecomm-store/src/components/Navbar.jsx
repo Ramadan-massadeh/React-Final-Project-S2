@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import styles from "./Navbar.module.css";
+import "../styles/navbar.css";
 
 function Navbar() {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <nav className={styles.nav}>
-      <h2 className={styles.logo}>🛒 MyStore</h2>
-      <ul className={styles.navLinks}>
+    <nav className="navbar">
+      <h2 className="navbar-logo">🛒 MyStore</h2>
+      <ul className="navbar-links">
         <li>
           <Link to="/">Home</Link>
         </li>

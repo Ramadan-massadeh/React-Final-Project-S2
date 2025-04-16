@@ -5,17 +5,17 @@
   text-align: center;
 }
 
-.footer h2 {
+.footer-logo h2 {
   margin-bottom: 0.5rem;
   color: #60a5fa;
 }
 
-.footer p {
+.footer-logo p {
   margin-bottom: 1.5rem;
   color: #cbd5e1;
 }
 
-.links {
+.footer-links {
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
@@ -23,17 +23,17 @@
   flex-wrap: wrap;
 }
 
-.links a {
+.footer-links a {
   color: #a5b4fc;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.links a:hover {
+.footer-links a:hover {
   color: #ffffff;
 }
 
-.social {
+.footer-social {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -41,17 +41,17 @@
   font-size: 1.5rem;
 }
 
-.social a {
+.footer-social a {
   color: #60a5fa;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.social a:hover {
+.footer-social a:hover {
   color: #fff;
   transform: scale(1.2);
 }
 
-.footer .copyright {
+.footer-copyright {
   font-size: 0.9rem;
   color: #94a3b8;
   margin-top: 1.5rem;

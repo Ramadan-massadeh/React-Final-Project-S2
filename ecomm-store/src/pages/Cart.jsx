@@ -18,7 +18,7 @@ function Cart() {
 
   // Handle placing the order
   const handlePlaceOrder = () => {
-    toast.success("✅ Order placed successfully! Redirecting...");
+    toast.success("Order placed successfully! Redirecting...");
     clearCart();
 
     setTimeout(() => {

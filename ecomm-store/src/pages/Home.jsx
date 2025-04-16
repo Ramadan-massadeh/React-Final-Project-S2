@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "../styles/Home.css";
 
 function Home() {
   const [featured, setFeatured] = useState([]);
@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <div className="home">
-      {/* ======= Hero Section ======= */}
+      {/*  Hero Section  */}
       <div className="hero-container">
         <div className="overlay">
           <div className="hero-content">
@@ -29,7 +29,7 @@ function Home() {
         </div>
       </div>
 
-      {/* ======= Featured Products Section ======= */}
+      {/*  Featured Products Section */}
       <section className="featured-section">
         <h2>✨ Featured Products</h2>
         <div className="featured-products">

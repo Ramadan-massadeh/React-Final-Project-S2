@@ -1,4 +1,4 @@
-.nav {
+.navbar {
   background-color: #ffffff;
   padding: 1rem 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -7,28 +7,30 @@
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
-.logo {
+.navbar-logo {
   font-size: 1.6rem;
   font-weight: 700;
   color: #4f46e5;
 }
 
-.navLinks {
+.navbar-links {
   list-style: none;
   display: flex;
   gap: 2rem;
   margin: 0;
+  padding: 0;
 }
 
-.navLinks li a {
+.navbar-links li a {
   text-decoration: none;
   color: #333;
   font-weight: 600;
   transition: color 0.3s;
 }
 
-.navLinks li a:hover {
+.navbar-links li a:hover {
   color: #4f46e5;
 }

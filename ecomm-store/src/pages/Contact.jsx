@@ -1,10 +1,10 @@
-import "./Contact.css";
+import "../styles/Contact.css";
 import { toast } from "react-toastify";
 
 function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("✅ Message sent successfully!");
+    toast.success("Message sent successfully!");
     e.target.reset();
   };
 
@@ -35,7 +35,7 @@ function Contact() {
         <button type="submit">Send Message</button>
       </form>
 
-      {/* ====== Google Map ====== */}
+      {/*  Google Map */}
       <div className="map-container">
         <h3>📍 Our Location</h3>
         <iframe
